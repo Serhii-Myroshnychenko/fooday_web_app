@@ -68,8 +68,9 @@ class _MyHomePageState extends State<MyHomePage> {
             shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.vertical(
                 bottom: new Radius.elliptical(MediaQuery.of(context).size.width, 100.0)
-              )
-            ),
+              ) ,
+                side: Colors.red,
+            )
           )
       ),
 
