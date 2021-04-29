@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'FooDay',
 
       theme: ThemeData(
@@ -69,8 +70,8 @@ class _MyHomePageState extends State<MyHomePage> {
               borderRadius: new BorderRadius.vertical(
                 bottom: new Radius.elliptical(MediaQuery.of(context).size.width, 100.0)
               ) ,
-                side: Colors.red,
-            )
+            ),
+              backgroundColor: Colors.red[300],
           )
       ),
 
