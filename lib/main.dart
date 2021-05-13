@@ -1,3 +1,5 @@
+// @dart=2.10
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,92 +24,319 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  final List data = [
+    {
+      "url":
+          "https://s3.yugopolis.ru/media/media/cache/news/data/img/ac5d1e9c42c61563c35537e8009a577c/270718.jpg"
+    },
+    {
+      "url":
+          "https://prod-wolt-venue-images-cdn.wolt.com/5b72b9cfdc1877000bfb5931/ba8a8e260886cf4884d7654dac08b763"
+    },
+    {
+      "url":
+          "https://cdnmyslo.ru/NewsImage/76/e7/76e75796-19d1-4a6f-bb8d-ba68d9596981_1.jpg"
+    }
+  ];
 
   @override
   Widget build(BuildContext context) {
+    final headerEllipseRadius = Radius.elliptical(400, 100);
+    final bodyEllipseRadius = Radius.elliptical(1000,170);
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
-    //
     // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    // fast, so that you can just rebuild anything that needs updating rath
+    const soft_red = const Color(0xFFFA8072);
+    int _currentIndex = 0;
+    List cardList = [Item1(), Item2(), Item3(), Item4()];
+    List<T> map<T>(List list, Function handler) {
+      List<T> result = [];
+      for (var i = 0; i < list.length; i++) {
+        result.add(handler(i, list[i]));
+      }
+      return result;
+    }
+
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                Stack(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 50.0),
+                      child: CarouselSlider(
+                        options: CarouselOptions(
+                          autoPlay: true,
+                          autoPlayInterval: Duration(seconds: 5),
+                          autoPlayAnimationDuration:
+                              Duration(milliseconds: 5000),
+                          height: 600,
+                        ),
+                        items: data.map((item) {
+                          return GridTile(
+
+                            child: Image.network(item["url"],
+                                fit: BoxFit.cover, width: 4000, height: 1000)
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                    Container(
+                        height: 240,
+                        decoration: BoxDecoration(
+                            color: soft_red,
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: headerEllipseRadius,
+                                bottomRight: headerEllipseRadius)),
+
+                        child: SafeArea(
+
+                            child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 20),
+                                child: Center(
+                                    child: Text(
+                                  "Питание для современного ритма жизни",
+
+                                  style: TextStyle(
+                                    fontSize: 40.0,
+                                    color: Colors.white,
+                                  ),
+                                ))))),
+                  ],
+                ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 50.0),
+                  child: Text("Сделайте заказ!",
+                  style: TextStyle(
+                    fontSize: 30.0,
+                    color: Colors.black,
+                  ),
+                  ),
+                ),
+                Container(
+                  child: CarouselSlider(
+                    options: CarouselOptions(
+                      height: 200.0,
+                      autoPlay: true,
+                      autoPlayInterval: Duration(seconds: 3),
+                      autoPlayAnimationDuration: Duration(milliseconds: 800),
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      pauseAutoPlayOnTouch: true,
+                      aspectRatio: 2.0,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          _currentIndex = index;
+                        });
+                      },
+                    ),
+                    items: cardList.map((card) {
+                      return Builder(builder: (BuildContext context) {
+                        return Container(
+                          height: MediaQuery.of(context).size.height * 0.30,
+                          width: MediaQuery.of(context).size.width,
+                          child: Card(
+                            color: Colors.blueAccent,
+                            child: card,
+                          ),
+                        );
+                      });
+                    }).toList(),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: map<Widget>(cardList, (index, url) {
+                    return Container(
+                      width: 10.0,
+                      height: 10.0,
+                      margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: _currentIndex == index ? Colors.blueAccent : Colors.grey,
+                      ),
+                    );
+                  }),
+                ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 50.0),
+                ),
+                Container(
+                  height:400,
+                  decoration: BoxDecoration(
+                      color: soft_red,
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: bodyEllipseRadius,
+                          bottomRight: bodyEllipseRadius,
+                          topLeft: bodyEllipseRadius,
+                           topRight: bodyEllipseRadius)),
+                ),
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+
+    // Column is also a layout widget. It takes a list of children and
+    // arranges them vertically. By default, it sizes itself to fit its
+    // children horizontally, and tries to be as tall as its parent.
+    //
+    // Invoke "debug painting" (press "p" in the console, choose the
+    // "Toggle Debug Paint" action from the Flutter Inspector in Android
+    // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+    // to see the wireframe for each widget.
+    //
+    // Column has various properties to control how it sizes itself and
+    // how it positions its children. Here we use mainAxisAlignment to
+    // center the children vertically; the main axis here is the vertical
+    // axis because Columns are vertical (the cross axis would be
+    // horizontal).
+
+    // This trailing comma makes auto-formatting nicer for build methods.
+  }
+}
+
+class Item1 extends StatelessWidget {
+  const Item1({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            stops: [
+              0.3,
+              1
+            ],
+            colors: [
+              Color(0xffff4000),
+              Color(0xffffcc66),
+            ]),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text("Data",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22.0,
+                  fontWeight: FontWeight.bold)),
+          Text("Data",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 17.0,
+                  fontWeight: FontWeight.w600)),
+        ],
+      ),
+    );
+  }
+}
+
+class Item2 extends StatelessWidget {
+  const Item2({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            stops: [0.3, 1],
+            colors: [Color(0xff5f2c82), Color(0xff49a09d)]),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text("Data",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22.0,
+                  fontWeight: FontWeight.bold)),
+          Text("Data",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 17.0,
+                  fontWeight: FontWeight.w600)),
+        ],
+      ),
+    );
+  }
+}
+
+class Item3 extends StatelessWidget {
+  const Item3({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            stops: [
+              0.3,
+              1
+            ],
+            colors: [
+              Color(0xffff4000),
+              Color(0xffffcc66),
+            ]),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Image.asset(
+            'assets/flutter_dev.png',
+            height: 180.0,
+            fit: BoxFit.cover,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class Item4 extends StatelessWidget {
+  const Item4({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text("Data",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22.0,
+                  fontWeight: FontWeight.bold)),
+          Text("Data",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 17.0,
+                  fontWeight: FontWeight.w600)),
+        ],
+      ),
     );
   }
 }
