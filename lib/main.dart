@@ -16,9 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'FooDay',
-
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'FooDay'),
@@ -94,6 +92,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               .width, 50.0),
                         )
                       ),
+                      alignment: Alignment.centerLeft,
+                      child: Text("FooDay"
+                          "@все права защищены")
                     ),
                   ],
                 ),
