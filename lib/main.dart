@@ -1,5 +1,6 @@
 // @dart=2.10
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -53,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final headerEllipseRadius = Radius.elliptical(400, 100);
-    final bodyEllipseRadius = Radius.elliptical(1000,170);
+    final bodyEllipseRadius = Radius.elliptical(1000, 170);
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     // The Flutter framework has been optimized to make rerunning build methods
@@ -91,10 +92,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         items: data.map((item) {
                           return GridTile(
-
-                            child: Image.network(item["url"],
-                                fit: BoxFit.cover, width: 4000, height: 1000)
-                          );
+                              child: Image.network(item["url"],
+                                  fit: BoxFit.cover,
+                                  width: 4000,
+                                  height: 1000));
                         }).toList(),
                       ),
                     ),
@@ -105,15 +106,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             borderRadius: BorderRadius.only(
                                 bottomLeft: headerEllipseRadius,
                                 bottomRight: headerEllipseRadius)),
-
                         child: SafeArea(
-
                             child: Padding(
                                 padding: EdgeInsets.symmetric(vertical: 20),
                                 child: Center(
-                                    child: Text(
-                                  "Питание для современного ритма жизни",
-
+                                    child: Text("Питание для современного ритма жизни",
                                   style: TextStyle(
                                     fontSize: 40.0,
                                     color: Colors.white,
@@ -122,12 +119,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
                 Container(
-                  padding: EdgeInsets.only(bottom: 50.0),
+                  padding: EdgeInsets.only(bottom: 30.0),
                   child: Text("Сделайте заказ!",
-                  style: TextStyle(
-                    fontSize: 30.0,
-                    color: Colors.black,
-                  ),
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
                 Container(
@@ -166,10 +163,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     return Container(
                       width: 10.0,
                       height: 10.0,
-                      margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                      margin:
+                          EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: _currentIndex == index ? Colors.blueAccent : Colors.grey,
+                        color: _currentIndex == index
+                            ? Colors.blueAccent
+                            : Colors.grey,
                       ),
                     );
                   }),
@@ -178,14 +178,142 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: EdgeInsets.only(bottom: 50.0),
                 ),
                 Container(
-                  height:400,
+                  height: 400,
                   decoration: BoxDecoration(
                       color: soft_red,
                       borderRadius: BorderRadius.only(
                           bottomLeft: bodyEllipseRadius,
                           bottomRight: bodyEllipseRadius,
                           topLeft: bodyEllipseRadius,
-                           topRight: bodyEllipseRadius)),
+                          topRight: bodyEllipseRadius)),
+                  child: Row(
+                    children: [
+                      Container(
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 100,
+                            ),
+                            Text("          Скачивайте приложение и\n               заказывайте прямо с\n                       телефона",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 40),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Image.asset("Icons/Main6.png", width: 240),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 50,
+                      ),
+                      Image.asset("Icons/Main5.png", width: 310),
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 50.0),
+                ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 50.0),
+                  child: Text("Доставим быстро и качественно!",
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      Container(
+                        width: 220,
+                        child: Column(
+                          children: [
+                            Image.asset("Icons/Main1.png", height: 200),
+                            SizedBox(
+                              height: 0,
+                            ),
+                            Text("Быстро",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 25),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text("Наш плюс - скорость. Закажите доставку в пределах города и мы все доставим за считанные минуты.",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 15),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: 220,
+                        child: Column(
+                          children: [
+                            Image.asset("Icons/Main2.png", height: 200),
+                            SizedBox(
+                              height: 0,
+                            ),
+                            Text("Вкусно",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 25),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text("Лучшие повара планеты собрали вместе, чтобы приготовить для вас шедевр кулинарии!",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 15),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: 220,
+                        child: Column(
+                          children: [
+                            Image.asset("Icons/Main3.png"),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text("Безопасно",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 25),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text("В наше время безопасность это всё",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 15),
+                            ),
+                          ],
+                        ),
+                      )
+                    ]),
+                Container(
+                  padding: EdgeInsets.only(bottom: 50.0),
+                ),
+                Container(
+                  height: 400,
+                  decoration: BoxDecoration(
+                      color: soft_red,
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: bodyEllipseRadius,
+                          bottomRight: bodyEllipseRadius,
+                          topLeft: bodyEllipseRadius,
+                          topRight: bodyEllipseRadius)),
+                  child: Row(
+                    children: [
+                      Text("       Подписывайтесь и получите \n                      промокоды",
+                        style: TextStyle(color: Colors.white, fontSize: 50),
+                      ),
+                      Image.asset("Icons/Main4.png"),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -193,23 +321,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
-
-    // Column is also a layout widget. It takes a list of children and
-    // arranges them vertically. By default, it sizes itself to fit its
-    // children horizontally, and tries to be as tall as its parent.
-    //
-    // Invoke "debug painting" (press "p" in the console, choose the
-    // "Toggle Debug Paint" action from the Flutter Inspector in Android
-    // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-    // to see the wireframe for each widget.
-    //
-    // Column has various properties to control how it sizes itself and
-    // how it positions its children. Here we use mainAxisAlignment to
-    // center the children vertically; the main axis here is the vertical
-    // axis because Columns are vertical (the cross axis would be
-    // horizontal).
-
-    // This trailing comma makes auto-formatting nicer for build methods.
   }
 }
 
