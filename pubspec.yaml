@@ -55,6 +55,13 @@ flutter:
      - Icons/Main4.png
      - Icons/Main5.png
      - Icons/Main6.png
+     - Icons/Carosel_1.png
+     - Icons/Carosel_2.png
+     - Icons/Carosel_3.png
+     - Icons/Footer4.png
+     - Icons/Footer2.png
+     - Icons/Footer3.png
+     - Icons/Footer1.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

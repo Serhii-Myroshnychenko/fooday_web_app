@@ -2,6 +2,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:ui';
+import 'package:flutter/widgets.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -12,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter',
       theme: ThemeData(
         // This is the theme of your application.
@@ -60,16 +64,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rath
     const soft_red = const Color(0xFFFA8072);
-    int _currentIndex = 0;
-    List cardList = [Item1(), Item2(), Item3(), Item4()];
-    List<T> map<T>(List list, Function handler) {
-      List<T> result = [];
-      for (var i = 0; i < list.length; i++) {
-        result.add(handler(i, list[i]));
-      }
-      return result;
-    }
-
     return Scaffold(
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -110,7 +104,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: Padding(
                                 padding: EdgeInsets.symmetric(vertical: 20),
                                 child: Center(
-                                    child: Text("Питание для современного ритма жизни",
+                                    child: Text(
+                                  "Питание для современного ритма жизни",
                                   style: TextStyle(
                                     fontSize: 40.0,
                                     color: Colors.white,
@@ -120,59 +115,125 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Container(
                   padding: EdgeInsets.only(bottom: 30.0),
-                  child: Text("Сделайте заказ!",
+                  child: Text(
+                    "Сделайте заказ!",
                     style: TextStyle(
                       fontSize: 30.0,
                       color: Colors.black,
                     ),
                   ),
                 ),
-                Container(
-                  child: CarouselSlider(
-                    options: CarouselOptions(
-                      height: 200.0,
-                      autoPlay: true,
-                      autoPlayInterval: Duration(seconds: 3),
-                      autoPlayAnimationDuration: Duration(milliseconds: 800),
-                      autoPlayCurve: Curves.fastOutSlowIn,
-                      pauseAutoPlayOnTouch: true,
-                      aspectRatio: 2.0,
-                      onPageChanged: (index, reason) {
-                        setState(() {
-                          _currentIndex = index;
-                        });
-                      },
-                    ),
-                    items: cardList.map((card) {
-                      return Builder(builder: (BuildContext context) {
-                        return Container(
-                          height: MediaQuery.of(context).size.height * 0.30,
-                          width: MediaQuery.of(context).size.width,
-                          child: Card(
-                            color: Colors.blueAccent,
-                            child: card,
-                          ),
-                        );
-                      });
-                    }).toList(),
-                  ),
-                ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: map<Widget>(cardList, (index, url) {
-                    return Container(
-                      width: 10.0,
-                      height: 10.0,
-                      margin:
-                          EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: _currentIndex == index
-                            ? Colors.blueAccent
-                            : Colors.grey,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Spacer(flex: 12),
+                      Container(
+                        width: 220,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Image.asset("Icons/Carosel_1.png"),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              "Картофель",
+                              style: TextStyle(color: soft_red, fontSize: 17),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Ингредиенты:картофель вареный, зелень.\n100 г.\nКалорийность - 101 ккал.",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 11),
+                            ),
+                          ],
+                        ),
                       ),
-                    );
-                  }),
+                      Spacer(flex: 3),
+                      Container(
+                        width: 220,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Image.asset("Icons/Carosel_2.png"),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            SizedBox(
+                              height: 0,
+                            ),
+                            Text(
+                              "Плов",
+                              style: TextStyle(color: soft_red, fontSize: 17),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Ингредиенты:рис, мясо, морковь.\n100 г.\nКалорийность - 205 ккал.",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 11),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Spacer(flex: 3),
+                      Container(
+                        width: 220,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Image.asset("Icons/Carosel_3.png"),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            SizedBox(
+                              height: 0,
+                            ),
+                            Text(
+                              "Шаурма",
+                              style: TextStyle(color: soft_red, fontSize: 17),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Ингредиенты:лаваш, мясо, огурец.\n200 г.\nКалорийность - 430 ккал.",
+                              style:
+                              TextStyle(color: Colors.black, fontSize: 11),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Spacer(flex: 12),
+                    ],
+                ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 50.0),
+                ),
+                Container(
+                  height: 50,
+                  width: 220,
+                  child: OutlineButton(
+                    child: Text(
+                      "Перейти к покупкам",
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        color: Color(0xff3D3739),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    textColor: Colors.white,
+                    color: Colors.transparent,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
+                    borderSide: BorderSide(width: 2.0, color: soft_red),
+                    onPressed: () {
+                      // do some
+                    },
+                  ),
                 ),
                 Container(
                   padding: EdgeInsets.only(bottom: 50.0),
@@ -194,7 +255,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             SizedBox(
                               height: 100,
                             ),
-                            Text("          Скачивайте приложение и\n               заказывайте прямо с\n                       телефона",
+                            Text(
+                              "          Скачивайте приложение и\n               заказывайте прямо с\n                       телефона",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 40),
                             ),
@@ -217,7 +279,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Container(
                   padding: EdgeInsets.only(bottom: 50.0),
-                  child: Text("Доставим быстро и качественно!",
+                  child: Text(
+                    "Доставим быстро и качественно!",
                     style: TextStyle(
                       fontSize: 30.0,
                       color: Colors.black,
@@ -235,14 +298,16 @@ class _MyHomePageState extends State<MyHomePage> {
                             SizedBox(
                               height: 0,
                             ),
-                            Text("Быстро",
+                            Text(
+                              "Быстро",
                               style:
                                   TextStyle(color: Colors.black, fontSize: 25),
                             ),
                             SizedBox(
                               height: 20,
                             ),
-                            Text("Наш плюс - скорость. Закажите доставку в пределах города и мы все доставим за считанные минуты.",
+                            Text(
+                              "Наш плюс - скорость. Закажите доставку в пределах города и мы все доставим за считанные минуты.",
                               style:
                                   TextStyle(color: Colors.black, fontSize: 15),
                             ),
@@ -257,14 +322,16 @@ class _MyHomePageState extends State<MyHomePage> {
                             SizedBox(
                               height: 0,
                             ),
-                            Text("Вкусно",
+                            Text(
+                              "Вкусно",
                               style:
                                   TextStyle(color: Colors.black, fontSize: 25),
                             ),
                             SizedBox(
                               height: 20,
                             ),
-                            Text("Лучшие повара планеты собрали вместе, чтобы приготовить для вас шедевр кулинарии!",
+                            Text(
+                              "Лучшие повара планеты собрали вместе, чтобы приготовить для вас шедевр кулинарии!",
                               style:
                                   TextStyle(color: Colors.black, fontSize: 15),
                             ),
@@ -279,14 +346,16 @@ class _MyHomePageState extends State<MyHomePage> {
                             SizedBox(
                               height: 10,
                             ),
-                            Text("Безопасно",
+                            Text(
+                              "Безопасно",
                               style:
                                   TextStyle(color: Colors.black, fontSize: 25),
                             ),
                             SizedBox(
                               height: 20,
                             ),
-                            Text("В наше время безопасность это всё",
+                            Text(
+                              "В наше время безопасность это всё",
                               style:
                                   TextStyle(color: Colors.black, fontSize: 15),
                             ),
@@ -308,145 +377,120 @@ class _MyHomePageState extends State<MyHomePage> {
                           topRight: bodyEllipseRadius)),
                   child: Row(
                     children: [
-                      Text("       Подписывайтесь и получите \n                      промокоды",
+                      Text(
+                        "       Подписывайтесь и получите \n                      промокоды",
                         style: TextStyle(color: Colors.white, fontSize: 50),
                       ),
                       Image.asset("Icons/Main4.png"),
                     ],
                   ),
                 ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 50.0),
+                ),
+                Container(
+                  width: 2000.0,
+                  height: 200.0,
+                  decoration:new BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      color: Colors.black87,
+                      borderRadius: new BorderRadius.only(
+                        topLeft: new Radius.elliptical(MediaQuery
+                            .of(context)
+                            .size
+                            .width, 50.0),
+                        topRight: new Radius.elliptical(MediaQuery
+                            .of(context)
+                            .size
+                            .width, 50.0),
+                      )
+                  ),
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "    FooDay",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: Colors.red[300],
+                                    fontSize: 45
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "         @все права защищены",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: Colors.red[300],
+                                    fontSize: 20
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+
+                              children: [
+
+
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Image.asset("Icons/Footer4.png",
+                                    height: 70,
+                                    width: 150,
+                                  ),
+                                ),
+                                Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Image.asset("Icons/Footer1.png",
+                                      height: 55,
+                                      width: 60,
+                                    )
+                                ),
+                                Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Image.asset("Icons/Footer2.png",
+                                      height: 55,
+                                      width: 55,
+                                    )
+                                ),
+                                Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Image.asset("Icons/Footer3.png",
+                                      height: 55,
+                                      width: 55,
+                                    )
+                                ),
+                                Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Text("     ")
+                                )
+                              ],
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class Item1 extends StatelessWidget {
-  const Item1({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: [
-              0.3,
-              1
-            ],
-            colors: [
-              Color(0xffff4000),
-              Color(0xffffcc66),
-            ]),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text("Data",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold)),
-          Text("Data",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 17.0,
-                  fontWeight: FontWeight.w600)),
-        ],
-      ),
-    );
-  }
-}
-
-class Item2 extends StatelessWidget {
-  const Item2({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: [0.3, 1],
-            colors: [Color(0xff5f2c82), Color(0xff49a09d)]),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text("Data",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold)),
-          Text("Data",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 17.0,
-                  fontWeight: FontWeight.w600)),
-        ],
-      ),
-    );
-  }
-}
-
-class Item3 extends StatelessWidget {
-  const Item3({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: [
-              0.3,
-              1
-            ],
-            colors: [
-              Color(0xffff4000),
-              Color(0xffffcc66),
-            ]),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Image.asset(
-            'assets/flutter_dev.png',
-            height: 180.0,
-            fit: BoxFit.cover,
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class Item4 extends StatelessWidget {
-  const Item4({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text("Data",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold)),
-          Text("Data",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 17.0,
-                  fontWeight: FontWeight.w600)),
-        ],
       ),
     );
   }
