@@ -119,20 +119,38 @@ class _MyHomePageState extends State<MyHomePage> {
 
                                   children: [
 
+
                                     Align(
                                       alignment: Alignment.centerRight,
                                       child: Image.asset("Pictures/Get_Android_app.png",
-                                        height: 40,
-                                        width: 100,
+                                        height: 70,
+                                        width: 150,
                                       ),
                                     ),
                                     Align(
                                       alignment: Alignment.centerRight,
-                                      child: Icon(
-                                        Icons.facebook,
-                                        color: Colors.red[300],
-                                        size: 60,
+                                      child: Image.asset("Pictures/teleg-or.png",
+                                      height: 55,
+                                        width: 60,
+                                      )
                                       ),
+                                    Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Image.asset("Pictures/google-or.png",
+                                          height: 55,
+                                          width: 55,
+                                        )
+                                    ),
+                                    Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Image.asset("Pictures/facebook-or.png",
+                                          height: 55,
+                                          width: 55,
+                                        )
+                                    ),
+                                    Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Text("     ")
                                     )
                                   ],
                                 )
