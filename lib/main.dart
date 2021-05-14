@@ -93,8 +93,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         )
                       ),
                       alignment: Alignment.centerLeft,
-                      child: Text("FooDay"
-                          "@все права защищены")
+                      child: Text("FooDay"),
+
                     ),
                   ],
                 ),
