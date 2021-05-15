@@ -20,28 +20,49 @@ class TopBar extends StatelessWidget {
 class DesktopTopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: <Widget>[
-          Text(
-            "FooDay",
-            style: TextStyle(
-              fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
-            ),
-          Row(
-            children: <Widget>[
-              Text(
-                "Assortment",
-                style: TextStyle(color: Colors.white),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+      child: Container(
+        constraints: BoxConstraints(maxWidth: 1200),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              "FooDay",
+              style: TextStyle(
+                fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
               ),
-              Text(
-                "About us",
-                style: TextStyle(color: Colors.white),
-              )
-            ],
-          )
-        ],
-      )
+            Row(
+              children: <Widget>[
+                Text(
+                  "Assortment",
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(
+                  width: 30,
+                ),
+                Text(
+                  "About us",
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(
+                  width: 30,
+                ),
+                MaterialButton(
+                  color: Colors.pink,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                  onPressed: () {},
+                  child: Text(
+                    "Log In",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                )
+              ],
+            )
+          ],
+        )
+      ),
     );
   }
 }

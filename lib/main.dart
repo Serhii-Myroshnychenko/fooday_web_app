@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+/*class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,10 +42,33 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
+}*/
+
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Container(
+            child: Column(
+              children: <Widget>[AppBar(
+                shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.vertical(
+                      bottom: new Radius.elliptical(MediaQuery
+                          .of(context)
+                          .size
+                          .width, 100.0)
+                  ),
+                ),
+                backgroundColor: Colors.red[300],
+                toolbarHeight: 130,
+              ),
+                TopBar()],
+            )
+          ),
+        );
+  }
 }
-
-
-
 
 /*import 'package:flutter/material.dart';
 
