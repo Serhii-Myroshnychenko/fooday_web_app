@@ -94,23 +94,97 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     Container(
-                        height: 240,
-                        decoration: BoxDecoration(
+                        height: 250.0,
+                        decoration: new BoxDecoration(
+                            shape: BoxShape.rectangle,
                             color: soft_red,
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: headerEllipseRadius,
-                                bottomRight: headerEllipseRadius)),
-                        child: SafeArea(
-                            child: Padding(
-                                padding: EdgeInsets.symmetric(vertical: 20),
-                                child: Center(
-                                    child: Text(
-                                  "Питание для современного ритма жизни",
-                                  style: TextStyle(
-                                    fontSize: 40.0,
-                                    color: Colors.white,
+                            borderRadius: new BorderRadius.only(
+                              bottomRight: new Radius.elliptical(
+                                  MediaQuery.of(context).size.width, 50.0),
+                              bottomLeft: new Radius.elliptical(
+                                  MediaQuery.of(context).size.width, 50.0),
+                            )),
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 20, horizontal: 40),
+                          child: Column(
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  MaterialButton(
+                                    child: Text("FooDay",
+                                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
+                                    ),
+                                    onPressed: (){},
                                   ),
-                                ))))),
+                                  Row(
+                                    children: <Widget>[
+                                      MaterialButton(
+                                        child: Text("Assortment",
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        onPressed: (){},
+                                      ),
+                                      SizedBox(
+                                        width: 30,
+                                      ),
+                                      MaterialButton(
+                                        child: Text("Basket",
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        onPressed: (){},
+                                      ),
+                                      SizedBox(
+                                        width: 30,
+                                      ),
+                                      MaterialButton(
+                                        child: Text("About us",
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        onPressed: (){},
+                                      ),
+                                      SizedBox(
+                                        width: 30,
+                                      ),
+                                      Align(
+                                        alignment: Alignment.topCenter,
+                                        child: Container(
+                                            //height: 5,
+                                            child: MaterialButton(
+                                          color: Colors.white,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20.0))),
+                                          onPressed: () {},
+                                          child: Text(
+                                            "Войти",
+                                            style: TextStyle(
+                                                color: Colors.red[300]),
+                                          ),
+                                        )),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: 40,
+                              ),
+                              Center(
+                                  child: Text(
+                                "Питание для современного ритма\nжизни", textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 40.0,
+                                  color: Colors.white,
+                                ),
+                              )),
+                            ],
+                          ),
+                        )),
                   ],
                 ),
                 Container(
@@ -245,6 +319,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           topLeft: bodyEllipseRadius,
                           topRight: bodyEllipseRadius)),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                         child: Column(
@@ -253,7 +328,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               height: 100,
                             ),
                             Text(
-                              "          Скачивайте приложение и\n               заказывайте прямо с\n                       телефона",
+                              "Скачивайте приложение и\nзаказывайте прямо с\nтелефона",
+                              textAlign: TextAlign.center,
                               style:
                                   TextStyle(color: Colors.white, fontSize: 40),
                             ),
@@ -266,9 +342,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ],
                         ),
-                      ),
-                      SizedBox(
-                        width: 50,
                       ),
                       Image.asset("Icons/Main5.png", width: 310),
                     ],
@@ -376,16 +449,18 @@ class _MyHomePageState extends State<MyHomePage> {
                           topLeft: bodyEllipseRadius,
                           topRight: bodyEllipseRadius)),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "       Подписывайтесь и получите \n                      промокоды",
+                        "Подписывайтесь и получите\nпромокоды",
+                        textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.white, fontSize: 50),
                       ),
                       MaterialButton(
                         shape: CircleBorder(
                             side: BorderSide(style: BorderStyle.solid)),
                         child: Image.asset("Icons/Main4.png"),
-                        color: soft_red,
+                        color: Colors.white,
                         onPressed: _launchURL,
                       ),
                     ],
@@ -420,8 +495,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Text(
                                 "    FooDay",
                                 textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    color: Colors.red[300], fontSize: 45),
+                                style: TextStyle(color: soft_red, fontSize: 45),
                               ),
                             ),
                             Align(
@@ -429,8 +503,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Text(
                                 "         @все права защищены",
                                 textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    color: Colors.red[300], fontSize: 20),
+                                style: TextStyle(color: soft_red, fontSize: 20),
                               ),
                             )
                           ],
@@ -444,28 +517,32 @@ class _MyHomePageState extends State<MyHomePage> {
                                 Align(
                                   alignment: Alignment.centerRight,
                                   child: MaterialButton(
-                                  child: Image.asset("Icons/Footer4.png", height: 70, width: 150),
+                                    child: Image.asset("Icons/Footer4.png",
+                                        height: 70, width: 150),
                                     onPressed: _launchURL_2,
                                   ),
                                 ),
                                 Align(
                                   alignment: Alignment.centerRight,
                                   child: MaterialButton(
-                                    child: Image.asset("Icons/Footer1.png", height: 55, width: 60),
+                                    child: Image.asset("Icons/Footer1.png",
+                                        height: 55, width: 60),
                                     onPressed: _launchURL,
                                   ),
                                 ),
                                 Align(
                                   alignment: Alignment.centerRight,
                                   child: MaterialButton(
-                                    child: Image.asset("Icons/Footer2.png", height: 55, width: 55),
+                                    child: Image.asset("Icons/Footer2.png",
+                                        height: 55, width: 55),
                                     onPressed: launchEmailSubmission,
                                   ),
                                 ),
                                 Align(
                                   alignment: Alignment.centerRight,
                                   child: MaterialButton(
-                                    child: Image.asset("Icons/Footer3.png", height: 55, width: 55),
+                                    child: Image.asset("Icons/Footer3.png",
+                                        height: 55, width: 55),
                                     onPressed: _launchURL_1,
                                   ),
                                 ),
@@ -496,11 +573,13 @@ const _url_2 = '';
 void _launchURL() async =>
     await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
 
-void _launchURL_1() async =>
-    await canLaunch(_url_1) ? await launch(_url_1) : throw 'Could not launch $_url_1';
+void _launchURL_1() async => await canLaunch(_url_1)
+    ? await launch(_url_1)
+    : throw 'Could not launch $_url_1';
 
-void _launchURL_2() async =>
-    await canLaunch(_url_2) ? await launch(_url_2) : throw 'Could not launch $_url_2';
+void _launchURL_2() async => await canLaunch(_url_2)
+    ? await launch(_url_2)
+    : throw 'Could not launch $_url_2';
 
 void launchEmailSubmission() async {
   final Uri params = Uri(
