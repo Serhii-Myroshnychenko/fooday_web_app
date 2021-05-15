@@ -36,20 +36,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: <Widget>[
                     Container(
-                      child: AppBar(
-                        title: Text(widget.title),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.vertical(
-                              bottom: new Radius.elliptical(MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width, 100.0)
+                          child: Container(
+                            child: AppBar(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.vertical(
+                                    bottom: new Radius.elliptical(MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width, 100.0)
+                                ),
+                              ),
+                              title: Text("FooDay"),
+                              backgroundColor: Colors.red[300],
+                              toolbarHeight: 130,
+                            ),
                           ),
-                        ),
-                        backgroundColor: Colors.red[300],
-                        toolbarHeight: 130,
                       ),
-                    ),
                     Container(
                       color: Colors.green,
                       height: 300.0,
