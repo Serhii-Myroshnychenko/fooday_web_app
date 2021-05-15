@@ -23,17 +23,50 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.vertical(
+                bottom: new Radius.elliptical(MediaQuery
+                    .of(context)
+                    .size
+                    .width, 100.0)
+            ),
+          ),
+          title: Text("FooDay"),
+          backgroundColor: Colors.red[300],
+          toolbarHeight: 130,
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.blue,
+                  Colors.pink
+                ]),
+          ),
+        )
+    );
+  }
+}
+
+
+
 /*class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-            colors: [Color.fromRGBO(195, 20, 50, 1.0), Color.fromRGBO(36, 11, 54, 1.0)]
-          )
+          color: Colors.red[300],
         ),
         child: Column(
           children: <Widget>[TopBar()],
@@ -41,11 +74,10 @@ class MyApp extends StatelessWidget {
       )
     );
   }
-
 }*/
 
 
-class MyHomePage extends StatelessWidget {
+/*class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +100,10 @@ class MyHomePage extends StatelessWidget {
           ),
         );
   }
-}
+}*/
+
+
+
 
 /*import 'package:flutter/material.dart';
 
