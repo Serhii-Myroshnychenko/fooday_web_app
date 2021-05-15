@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:flutter/widgets.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(MyApp());
@@ -124,91 +124,88 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Spacer(flex: 12),
-                      Container(
-                        width: 220,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Image.asset("Icons/Carosel_1.png"),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                              "Картофель",
-                              style: TextStyle(color: soft_red, fontSize: 17),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              "Ингредиенты:картофель вареный, зелень.\n100 г.\nКалорийность - 101 ккал.",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 11),
-                            ),
-                          ],
-                        ),
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Spacer(flex: 12),
+                    Container(
+                      width: 220,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Image.asset("Icons/Carosel_1.png"),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "Картофель",
+                            style: TextStyle(color: soft_red, fontSize: 17),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            "Ингредиенты:картофель вареный, зелень.\n100 г.\nКалорийность - 101 ккал.",
+                            style: TextStyle(color: Colors.black, fontSize: 11),
+                          ),
+                        ],
                       ),
-                      Spacer(flex: 3),
-                      Container(
-                        width: 220,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Image.asset("Icons/Carosel_2.png"),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            SizedBox(
-                              height: 0,
-                            ),
-                            Text(
-                              "Плов",
-                              style: TextStyle(color: soft_red, fontSize: 17),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              "Ингредиенты:рис, мясо, морковь.\n100 г.\nКалорийность - 205 ккал.",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 11),
-                            ),
-                          ],
-                        ),
+                    ),
+                    Spacer(flex: 3),
+                    Container(
+                      width: 220,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Image.asset("Icons/Carosel_2.png"),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          SizedBox(
+                            height: 0,
+                          ),
+                          Text(
+                            "Плов",
+                            style: TextStyle(color: soft_red, fontSize: 17),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            "Ингредиенты:рис, мясо, морковь.\n100 г.\nКалорийность - 205 ккал.",
+                            style: TextStyle(color: Colors.black, fontSize: 11),
+                          ),
+                        ],
                       ),
-                      Spacer(flex: 3),
-                      Container(
-                        width: 220,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Image.asset("Icons/Carosel_3.png"),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            SizedBox(
-                              height: 0,
-                            ),
-                            Text(
-                              "Шаурма",
-                              style: TextStyle(color: soft_red, fontSize: 17),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              "Ингредиенты:лаваш, мясо, огурец.\n200 г.\nКалорийность - 430 ккал.",
-                              style:
-                              TextStyle(color: Colors.black, fontSize: 11),
-                            ),
-                          ],
-                        ),
+                    ),
+                    Spacer(flex: 3),
+                    Container(
+                      width: 220,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Image.asset("Icons/Carosel_3.png"),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          SizedBox(
+                            height: 0,
+                          ),
+                          Text(
+                            "Шаурма",
+                            style: TextStyle(color: soft_red, fontSize: 17),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            "Ингредиенты:лаваш, мясо, огурец.\n200 г.\nКалорийность - 430 ккал.",
+                            style: TextStyle(color: Colors.black, fontSize: 11),
+                          ),
+                        ],
                       ),
-                      Spacer(flex: 12),
-                    ],
+                    ),
+                    Spacer(flex: 12),
+                  ],
                 ),
                 Container(
                   padding: EdgeInsets.only(bottom: 50.0),
@@ -263,7 +260,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             SizedBox(
                               height: 20,
                             ),
-                            Image.asset("Icons/Main6.png", width: 240),
+                            MaterialButton(
+                              child: Image.asset("Icons/Main6.png", width: 240),
+                              onPressed: _launchURL_2,
+                            ),
                           ],
                         ),
                       ),
@@ -381,7 +381,13 @@ class _MyHomePageState extends State<MyHomePage> {
                         "       Подписывайтесь и получите \n                      промокоды",
                         style: TextStyle(color: Colors.white, fontSize: 50),
                       ),
-                      Image.asset("Icons/Main4.png"),
+                      MaterialButton(
+                        shape: CircleBorder(
+                            side: BorderSide(style: BorderStyle.solid)),
+                        child: Image.asset("Icons/Main4.png"),
+                        color: soft_red,
+                        onPressed: _launchURL,
+                      ),
                     ],
                   ),
                 ),
@@ -391,20 +397,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 Container(
                   width: 2000.0,
                   height: 200.0,
-                  decoration:new BoxDecoration(
+                  decoration: new BoxDecoration(
                       shape: BoxShape.rectangle,
                       color: Colors.black87,
                       borderRadius: new BorderRadius.only(
-                        topLeft: new Radius.elliptical(MediaQuery
-                            .of(context)
-                            .size
-                            .width, 50.0),
-                        topRight: new Radius.elliptical(MediaQuery
-                            .of(context)
-                            .size
-                            .width, 50.0),
-                      )
-                  ),
+                        topLeft: new Radius.elliptical(
+                            MediaQuery.of(context).size.width, 50.0),
+                        topRight: new Radius.elliptical(
+                            MediaQuery.of(context).size.width, 50.0),
+                      )),
                   alignment: Alignment.centerLeft,
                   child: Container(
                     child: Row(
@@ -420,9 +421,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 "    FooDay",
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
-                                    color: Colors.red[300],
-                                    fontSize: 45
-                                ),
+                                    color: Colors.red[300], fontSize: 45),
                               ),
                             ),
                             Align(
@@ -431,9 +430,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 "         @все права защищены",
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
-                                    color: Colors.red[300],
-                                    fontSize: 20
-                                ),
+                                    color: Colors.red[300], fontSize: 20),
                               ),
                             )
                           ],
@@ -443,42 +440,38 @@ class _MyHomePageState extends State<MyHomePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Row(
-
                               children: [
-
-
                                 Align(
                                   alignment: Alignment.centerRight,
-                                  child: Image.asset("Icons/Footer4.png",
-                                    height: 70,
-                                    width: 150,
+                                  child: MaterialButton(
+                                  child: Image.asset("Icons/Footer4.png", height: 70, width: 150),
+                                    onPressed: _launchURL_2,
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: MaterialButton(
+                                    child: Image.asset("Icons/Footer1.png", height: 55, width: 60),
+                                    onPressed: _launchURL,
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: MaterialButton(
+                                    child: Image.asset("Icons/Footer2.png", height: 55, width: 55),
+                                    onPressed: launchEmailSubmission,
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: MaterialButton(
+                                    child: Image.asset("Icons/Footer3.png", height: 55, width: 55),
+                                    onPressed: _launchURL_1,
                                   ),
                                 ),
                                 Align(
                                     alignment: Alignment.centerRight,
-                                    child: Image.asset("Icons/Footer1.png",
-                                      height: 55,
-                                      width: 60,
-                                    )
-                                ),
-                                Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Image.asset("Icons/Footer2.png",
-                                      height: 55,
-                                      width: 55,
-                                    )
-                                ),
-                                Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Image.asset("Icons/Footer3.png",
-                                      height: 55,
-                                      width: 55,
-                                    )
-                                ),
-                                Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Text("     ")
-                                )
+                                    child: Text("     "))
                               ],
                             )
                           ],
@@ -493,5 +486,31 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+}
+
+const _url = 'https://tgrm.github.io/FooDay_bot';
+const _url_1 = 'https://www.facebook.com/oleg.huleev';
+const _url_2 = '';
+
+void _launchURL() async =>
+    await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
+
+void _launchURL_1() async =>
+    await canLaunch(_url_1) ? await launch(_url_1) : throw 'Could not launch $_url_1';
+
+void _launchURL_2() async =>
+    await canLaunch(_url_2) ? await launch(_url_2) : throw 'Could not launch $_url_2';
+
+void launchEmailSubmission() async {
+  final Uri params = Uri(
+      scheme: 'mailto',
+      path: 'oleghaleev159@gmail.com',
+      queryParameters: {'subject': '', 'body': ''});
+  String url = params.toString();
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    print('Could not launch $url');
   }
 }
