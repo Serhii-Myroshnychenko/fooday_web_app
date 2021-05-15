@@ -34,23 +34,77 @@ class _MyHomePageState extends State<MyHomePage> {
               child: SingleChildScrollView(
                 padding:  EdgeInsets.symmetric(horizontal: 0.0),
                 child: Column(
+                  mainAxisAlignment:MainAxisAlignment.start,
                   children: <Widget>[
                     Container(
-                          child: Container(
-                            child: AppBar(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.vertical(
-                                    bottom: new Radius.elliptical(MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width, 100.0)
-                                ),
+                      height: 200.0,
+                      decoration:new BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          color: Colors.red[300],
+                          borderRadius: new BorderRadius.only(
+                            bottomRight: new Radius.elliptical(MediaQuery
+                                .of(context)
+                                .size
+                                .width, 50.0),
+                            bottomLeft: new Radius.elliptical(MediaQuery
+                                .of(context)
+                                .size
+                                .width, 50.0),
+                          )
+                      ),
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 40),
+                        child: Container(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text("FooDay",
+                                style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 30),
                               ),
-                              title: Text("FooDay"),
-                              backgroundColor: Colors.red[300],
-                              toolbarHeight: 130,
-                            ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: <Widget>[
+                                  Text(
+                                    "Assortment",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  SizedBox(
+                                    width: 30,
+                                  ),
+                                  Text("Basket",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  SizedBox(
+                                    width: 30,
+                                  ),
+                                  Text("About us",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  SizedBox(
+                                    width: 30,
+                                  ),
+                                  Align(
+                                    alignment: Alignment.topCenter,
+                                    child: Container(
+                                        //height: 5,
+                                        child: MaterialButton(
+                                          color: Colors.white,
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                                          onPressed: (){},
+                                          child: Text("Войти",
+                                            style: TextStyle(color: Colors.red[300]),),
+                                        )
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
                           ),
+                        ),
+                      )
+
                       ),
                     Container(
                       color: Colors.green,
@@ -118,10 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Row(
-
                                   children: [
-
-
                                     Align(
                                       alignment: Alignment.centerRight,
                                       child: Image.asset("Pictures/Get_Android_app.png",
@@ -162,7 +213,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
-
                   ],
                 ),
               ),
